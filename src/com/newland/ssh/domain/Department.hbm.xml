@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<!-- name 实体类的全路径；table 起个名字 -->
+	<class name="com.newland.ssh.domain.Department" table="department">
+		<!-- 主键   -->
+		<id name="did" column="did">
+			<!-- 主键的生成策略 -->
+			<generator class="native"></generator>
+		</id>
+		
+		<!-- 普通的属性 -->
+		<property name="dname" column="dname" length="20" />
+		<property name="ddesc" column="ddesc" length="100" />
+			
+		<!-- 关联关系映射配置  一对多   一个部门对应多个员工    员工集合  set集合 -->
+		<set name="employees">
+			<key column="dno" />
+			<one-to-many class="com.newland.ssh.domain.Employee"/>
+		</set>
+		
+	</class>
+
+</hibernate-mapping>
+
